@@ -1,3 +1,4 @@
+// TrixLabs - Hard Tech Landing Page
 "use client";
 
 import { motion } from "framer-motion";
