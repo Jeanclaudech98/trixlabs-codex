@@ -5,12 +5,16 @@ import { ArrowRight, Box, Cpu, Factory, ShieldCheck } from "lucide-react";
 
 const panelIntro = {
   hidden: { opacity: 0, y: 80, filter: "blur(8px)" },
-  show: {
+  show: (idx: number) => ({
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.55, ease: [0.17, 0.67, 0.2, 1] },
-  },
+    transition: { 
+      duration: 0.55, 
+      ease: [0.17, 0.67, 0.2, 1] as const,
+      delay: 0.25 + idx * 0.08 
+    },
+  }),
 };
 
 const feed = [
@@ -102,10 +106,10 @@ export default function Home() {
               {feed.map((entry, idx) => (
                 <motion.article
                   key={entry.label}
+                  custom={idx}
                   variants={panelIntro}
                   initial="hidden"
                   animate="show"
-                  transition={{ delay: 0.25 + idx * 0.08 }}
                   className="telemetry-cell"
                 >
                   <p>{entry.label}</p>
@@ -132,11 +136,11 @@ export default function Home() {
           {rails.map((rail, index) => (
             <motion.article
               key={rail.title}
+              custom={index}
               variants={panelIntro}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.25 }}
-              transition={{ delay: index * 0.08 }}
               className="rail-card"
             >
               <rail.icon className="h-6 w-6" />
