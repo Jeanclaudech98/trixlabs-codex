@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Orbitron, Rajdhani } from "next/font/google";
+import { Space_Mono, Syncopate } from "next/font/google";
 import "./globals.css";
 
-const orbitron = Orbitron({
+const syncopate = Syncopate({
   variable: "--font-display",
+  weight: ["400", "700"],
   subsets: ["latin"],
 });
 
-const rajdhani = Rajdhani({
-  variable: "--font-body",
-  weight: ["400", "500", "600", "700"],
+const spaceMono = Space_Mono({
+  variable: "--font-mono",
+  weight: ["400", "700"],
   subsets: ["latin"],
 });
 
@@ -26,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${orbitron.variable} ${rajdhani.variable} antialiased`}>
+      <body className={`${syncopate.variable} ${spaceMono.variable} antialiased`}>
         {children}
       </body>
     </html>
